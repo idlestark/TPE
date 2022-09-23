@@ -69,3 +69,19 @@ class AboutController{
 
     }
 }
+
+class ImpressionDetailsController{
+    private $model;
+    private $view;
+
+    function __construct(){
+        $this->model = new ImpressionDetails();
+        $this->view = new ImpressionD();
+    }
+
+   function showImpressionDetails($id){
+    $ImpressionDetails = $this->model->ImpressionDetails($id);
+    $this->view->impressionDetails($ImpressionDetails);
+   }
+
+}

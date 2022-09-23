@@ -13,6 +13,11 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action); 
 
 switch ($params[0]) {
+    case 'impresiones':
+        $id =$params[1];
+        $controller = new ImpressionDetailsController();
+        $controller->showImpressionDetails($id);
+        break;
     case 'home':
         $controller = new ImpressionsController();
         $controller->showImpressions();
