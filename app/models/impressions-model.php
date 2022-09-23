@@ -10,13 +10,13 @@ class ImpressionsModel{
     function getImpressions(){
         $db = $this->connectDB();
         
-        $sentencia = $db->prepare( "select * from objeto");
+        $sentence = $db->prepare( "select * from objeto");
         
-        $sentencia->execute();
+        $sentence->execute();
         
-        $impresiones = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        $impressions = $sentence->fetchAll(PDO::FETCH_OBJ);
         
-        return $impresiones;
+        return $impressions;
         
         } 
 }

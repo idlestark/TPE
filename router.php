@@ -18,10 +18,16 @@ switch ($params[0]) {
         $controller->showImpressions();
         break;
     case 'about':
-        showAbout();
+        $controller = new AboutController();
+        $controller->ShowAbout();
         break;
     case 'cats':
+        if (empty($params[1])) {
+            $controller = new TypeListController();
+            $controller->ShowListType();
+        } 
+        $id =$params[1];
         $controller = new TypeController();
-        $controller->showTypes();
-        break;
+        $controller->ShowTypes($id);
+        break;    
 }
