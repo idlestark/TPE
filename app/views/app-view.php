@@ -5,7 +5,9 @@
 class ImpressionsView{
     function showImpressions($impresiones){
         $smarty = new Smarty();
-        //Aca incluyo tpl con 
+        //Obtengo y asigno datos con $smarty->assign("Variable","Valor de la variable") 
+        //Para mostrar uso $smarty->display('template.tpl')
+        
         require './templates/header.php';
         echo "<ul>";
         foreach($impresiones as $impresion){
