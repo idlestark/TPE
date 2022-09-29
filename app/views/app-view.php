@@ -1,7 +1,11 @@
 <?php
-    
+ 
+ require_once('libs/smarty-4.2.1/libs/Smarty.class.php');
+   
 class ImpressionsView{
     function showImpressions($impresiones){
+        $smarty = new Smarty();
+        //Aca incluyo tpl con 
         require './templates/header.php';
         echo "<ul>";
         foreach($impresiones as $impresion){
