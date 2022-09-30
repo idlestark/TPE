@@ -11,7 +11,7 @@ class ImpressionsView{
     function showImpressions($impression){
      $this->smarty->assign('impression', $impression);
      $this->smarty->display('impressionsList.tpl');
-        //var_dump($impressions);
+        
     }
 }
 
