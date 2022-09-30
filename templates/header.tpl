@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <base href="<?php echo BASE_URL ?>">
+<base href="{BASE_URL}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body> 
@@ -15,6 +15,7 @@
       <a class="nav-item nav-link" href="home">Home</a>
       <a class="nav-item nav-link" href="about">Sobre Nosotros</a>
       <a class="nav-item nav-link" href="cats">Categorías</a>
+      
     </div>
   </div>
 </nav> 

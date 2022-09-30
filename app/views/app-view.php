@@ -1,60 +1,68 @@
 <?php
- 
- require_once('libs/smarty-4.2.1/libs/Smarty.class.php');
-   
+require_once './libs/smarty-4.2.1/libs/Smarty.class.php';
+
 class ImpressionsView{
-    function showImpressions($impresiones){
-        $smarty = new Smarty();
-        //Obtengo y asigno datos con $smarty->assign("Variable","Valor de la variable") 
-        //Para mostrar uso $smarty->display('template.tpl')
-        
-        require './templates/header.php';
-        echo "<ul>";
-        foreach($impresiones as $impresion){
-            echo "<li class='col'> <a href='impresiones/$impresion->id'<b>$impresion->nombre</a></b>";
-        }
-        echo "</ul>";
+    private $smarty;
+
+    public function __construct() {
+        $this->smarty = new Smarty();
+   }
+
+    function showImpressions($impression){
+     $this->smarty->assign('impression', $impression);
+     $this->smarty->display('impressionsList.tpl');
+        //var_dump($impressions);
     }
 }
 
 class TypesView{
-     
+    private $smarty;
+
+    public function __construct() {
+        $this->smarty = new Smarty();
+   }
     function showTypes($types){
-        require_once './templates/header.php';
-        echo "<ul>";
-        foreach ($types as $tipo){
-            echo "<li class='col'> <a href='cats/$tipo->id'<br>$tipo->nombre_tipo<br></a>$tipo->descripcion<a/></li>";
-        }
-        echo "</ul>";
+        $this->smarty->assign('types', $types);
+        $this->smarty->display('typesView.tpl');
     }
 }
 
 class TypeListView{
-    function ListTypes($types){
-        require './templates/header.php';
-       echo "<ul>";
-        foreach ($types as $tipo){
-            echo "<li class='col'> <a href='cats/$tipo->id'<br>$tipo->nombre_tipo<br></a></li>";
-        }
-        echo "</ul>";   
+    private $smarty;
+
+    public function __construct() {
+        $this->smarty = new Smarty();
+   }
+
+    function ListTypes($ListTypes){
+       $this->smarty->assign('ListTypes', $ListTypes);
+       $this->smarty->display('typesListView.tpl');
+        
     }
 }
 
 class AboutView{
+    private $smarty;
+
+    public function __construct() {
+        $this->smarty = new Smarty();
+   }
     
     function ShowAbout(){
-        require './templates/header.php';
-        echo "<p>Somos una empresa start-up fundada por padre e hijo dedicados a la impresión 3D, intentando brindar soluciones prácticas y baratas a nuestros clientes.</p>";
+        $this->smarty->display('aboutUs.tpl');
+       
     }
 }
 
 class ImpressionD{
-    function ImpressionDetails($types){
-        require './templates/header.php';
-        echo "<ul>";
-        foreach ($types as $tipo){
-            echo "<li class='col'> <a href='cats/$tipo->id'<br>$tipo->nombre<br></a>$tipo->descripcion</li>";
-        }
-        echo "</ul>"; 
+    private $smarty;
+
+    public function __construct() {
+        $this->smarty = new Smarty();
+   }
+    function ImpressionDetails($ImpressionDetails){
+        $this->smarty->assign('types', $ImpressionDetails);
+        $this->smarty->display('impressionsDetails.tpl');
+        
     }
 }
