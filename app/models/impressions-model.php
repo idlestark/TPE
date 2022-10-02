@@ -5,10 +5,10 @@ class CRUDImpression{
         $db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
         return $db;
     }
-    function addImpression($title, $description, $selectCat,$dimensions,$price){
-        $db = $this->connectDB(); 
-    $query = $this->db->prepare("INSERT INTO objeto(id, nombre, descripcion, tipo_id_fk, dimensiones, precio) VALUES (?,?,?,?,?)");
-    $query->execute([$title, $description,$selectCat,$dimensions,$price]);
+    function addImpression($name, $description, $selectCat,$dimensions,$price){
+        $db = $this->connectDB();
+    $query = $this->$db->prepare("INSERT INTO objeto(, nombre, descripcion, tipo_id_fk, dimensiones, precio) VALUES (?,?,?,?,?)");
+    $query->execute([$name, $description,$selectCat,$dimensions,$price]);
 
 
 }
