@@ -1,5 +1,20 @@
 <?php
 
+class CRUDImpression{
+    function connectDB(){
+        $db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
+        return $db;
+    }
+    function addImpression($title, $description, $selectCat,$dimensions,$price){
+        $db = $this->connectDB(); 
+    $query = $this->db->prepare("INSERT INTO objeto(id, nombre, descripcion, tipo_id_fk, dimensiones, precio) VALUES (?,?,?,?,?)");
+    $query->execute([$title, $description,$selectCat,$dimensions,$price]);
+
+
+}
+}
+
+
 class ImpressionsModel{
 
     function connectDB(){
@@ -10,11 +25,11 @@ class ImpressionsModel{
     function getImpressions(){
         $db = $this->connectDB();
         
-        $sentence = $db->prepare( "select * from objeto");
+        $query = $db->prepare( "select * from objeto");
         
-        $sentence->execute();
+        $query->execute();
         
-        $impressions = $sentence->fetchAll(PDO::FETCH_OBJ);
+        $impressions = $query->fetchAll(PDO::FETCH_OBJ);
         
         return $impressions;
         
@@ -31,11 +46,11 @@ class ImpressionDetails {
     function ImpressionDetails($id){
         $db = $this->connectDB();
 
-        $sentence = $db->prepare( "SELECT * FROM objeto WHERE id = '$id'");
+        $query = $db->prepare( "SELECT * FROM objeto WHERE id = '$id'");
 
-        $sentence->execute();
+        $query->execute();
         
-        $ImpressionDetails = $sentence->fetchAll(PDO::FETCH_OBJ);
+        $ImpressionDetails = $query->fetchAll(PDO::FETCH_OBJ);
 
         return $ImpressionDetails;
 

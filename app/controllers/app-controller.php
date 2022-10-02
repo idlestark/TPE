@@ -85,3 +85,48 @@ class ImpressionDetailsController{
    }
 
 }
+
+class CRUDCatsController{
+    private $model;
+
+    function __construct(){
+        $this->model = new CRUDCategory();
+        
+    }
+
+    function addCategory(){
+        $namecats = $_POST['namecats'];
+        $descriptioncats = $_POST['descriptioncats'];
+
+        $id = $this->model->addCategory($namecats, $descriptioncats,);
+        header("Location: " . "http://localhost/WEB2/TPE/cats");
+    }
+
+    function removeCategory($id) {
+        $this->model->removeCategoryById($id);
+        header("Location: " . "http://localhost/WEB2/TPE/cats");
+    }
+
+}
+
+class CRUDImpressionsController{
+    private $model;
+
+    function __construct(){
+        $this->model = new CRUDImpression();
+        
+    }
+
+    function addImpression(){
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $selectCat = $_POST['selectCat'];
+        $dimensions = $_POST['dimensions'];
+        $price = $_POST['price'];
+
+        $id = $this->model->addImpression($name, $description, $selectCat,$dimensions,$price);
+
+        header("Location: " . BASE_URL);
+        
+    }
+}
