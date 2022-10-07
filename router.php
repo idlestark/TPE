@@ -6,8 +6,12 @@ $action = 'home';
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 }
+
+
 $CRUDCatsController = new CRUDCatsController();
 $CRUDImpressionsController = new CRUDImpressionsController();
+$Typecontroller = new TypeController();
+$ImpressionsController = new ImpressionsController();
 
 $params = explode('/', $action); 
 
@@ -18,19 +22,20 @@ switch ($params[0]) {
     case 'addImpression':
         $CRUDImpressionsController->addImpression();
         break;
-    
+    case 'removeImpression':
+        $id = $params[1];       
+        $CRUDImpressionsController->removeImpression($id);
+        break;    
     case 'removeCategory':
         $id = $params[1];       
         $CRUDCatsController->removeCategory($id);
         break;    
     case 'impresiones':
         $id =$params[1];
-        $controller = new ImpressionDetailsController();
-        $controller->showImpressionDetails($id);
+        $ImpressionsController->showImpressionDetails($id);
         break;
     case 'home':
-        $controller = new ImpressionsController();
-        $controller->showImpressions();
+        $ImpressionsController->showImpressions();
         break;
     case 'about':
         $controller = new AboutController();
@@ -38,13 +43,12 @@ switch ($params[0]) {
         break;
     case 'cats':
         if (empty($params[1])) {
-            $controller = new TypeListController();
-            $controller->ShowListType();
+            
+            $Typecontroller->ShowListType();
         } 
         else{
             $id = $params[1];
-            $controller = new TypeController();
-            $controller->ShowTypes($id);
+            $Typecontroller->ShowTypes($id);
             break;  
         }
           

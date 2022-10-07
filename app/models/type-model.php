@@ -2,9 +2,9 @@
 
 class CRUDCategory{
 
-        function connectDB(){
-            $db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
-            return $db;
+    function connectDB(){
+        $db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
+        return $db;
         }
         
      function addCategory($namecats, $descriptioncats){
@@ -40,22 +40,15 @@ class TypeModel{
         return $types;
                 
         }
-}
-
-class TypeListModel{
-    function connectDB(){
-        $db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
-        return $db;
-    }
 
     function getTypeList(){
         $db = $this->connectDB();
         $query = $db->prepare( "select * from tipo");
-       
+           
         $query->execute();
-        
+            
         $typeslist = $query->fetchAll(PDO::FETCH_OBJ);
-        
+            
         return $typeslist;
-    }
+        }    
 }

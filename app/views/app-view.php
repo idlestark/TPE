@@ -8,9 +8,15 @@ class ImpressionsView{
         $this->smarty = new Smarty();
    }
 
-    function showImpressions($impression){
-     $this->smarty->assign('impression', $impression);
+    function showImpressions($impressions, $types){
+     $this->smarty->assign('impressions', $impressions);
+     $this->smarty->assign('types', $types);
      $this->smarty->display('impressionsList.tpl');
+    }
+
+    function ImpressionDetails($ImpressionDetails){
+        $this->smarty->assign('types', $ImpressionDetails);
+        $this->smarty->display('impressionsDetails.tpl');
         
     }
 }
@@ -25,21 +31,15 @@ class TypesView{
         $this->smarty->assign('types', $types);
         $this->smarty->display('typesView.tpl');
     }
-}
-
-class TypeListView{
-    private $smarty;
-
-    public function __construct() {
-        $this->smarty = new Smarty();
-   }
 
     function ListTypes($ListTypes){
-       $this->smarty->assign('ListTypes', $ListTypes);
-       $this->smarty->display('typesListView.tpl');
-        
-    }
+        $this->smarty->assign('ListTypes', $ListTypes);
+        $this->smarty->display('typesListView.tpl');
+         
+     }
+
 }
+
 
 class AboutView{
     private $smarty;
@@ -51,18 +51,5 @@ class AboutView{
     function ShowAbout(){
         $this->smarty->display('aboutUs.tpl');
        
-    }
-}
-
-class ImpressionD{
-    private $smarty;
-
-    public function __construct() {
-        $this->smarty = new Smarty();
-   }
-    function ImpressionDetails($ImpressionDetails){
-        $this->smarty->assign('types', $ImpressionDetails);
-        $this->smarty->display('impressionsDetails.tpl');
-        
     }
 }

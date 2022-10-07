@@ -14,13 +14,18 @@ class ImpressionsController{
     }
 
     function showImpressions(){
-        //obtiene las impresiones del modelo
-        $impressions = $this->model->getImpressions();
-
-      //actualizo la vista
-      $this->view->showImpressions($impressions);
+    $impressions = $this->model->getImpressions();
+    $typesModel = new TypeModel();
+    $types = $typesModel->getTypeList();
+    $this->view->showImpressions($impressions, $types); 
+    
     }
     
+    function showImpressionDetails($id){
+        $ImpressionDetails = $this->model->ImpressionDetails($id);
+        $this->view->impressionDetails($ImpressionDetails);
+       }
+
 }
 
 class TypeController{
@@ -38,22 +43,15 @@ class TypeController{
     //actualizo la vista
      $this->view->ShowTypes($types);
     }
-}
-
-class TypeListController{
-    private $model;
-    private $view;
-
-    function __construct(){
-        $this->model = new TypeListModel();
-        $this->view = new TypeListView();
-    }
 
     function ShowListType(){
-  $ListTypes = $this->model->getTypeList();
-  $this->view->ListTypes($ListTypes);
-    }
+        $ListTypes = $this->model->getTypeList();
+        $this->view->ListTypes($ListTypes);
+          }
+      
 }
+
+
 
 class AboutController{
     
@@ -70,21 +68,6 @@ class AboutController{
     }
 }
 
-class ImpressionDetailsController{
-    private $model;
-    private $view;
-
-    function __construct(){
-        $this->model = new ImpressionDetails();
-        $this->view = new ImpressionD();
-    }
-
-   function showImpressionDetails($id){
-    $ImpressionDetails = $this->model->ImpressionDetails($id);
-    $this->view->impressionDetails($ImpressionDetails);
-   }
-
-}
 
 class CRUDCatsController{
     private $model;
@@ -99,12 +82,12 @@ class CRUDCatsController{
         $descriptioncats = $_POST['descriptioncats'];
 
         $id = $this->model->addCategory($namecats, $descriptioncats,);
-        header("Location: " . "http://localhost/WEB2/TPE/cats");
+        header("Location: " . BASE_URL . "cats");
     }
 
     function removeCategory($id) {
         $this->model->removeCategoryById($id);
-        header("Location: " . "http://localhost/WEB2/TPE/cats");
+        header("Location: " . BASE_URL . "cats");
     }
 
 }
@@ -118,15 +101,20 @@ class CRUDImpressionsController{
     }
 
     function addImpression(){
-        $name = $_POST['name'];
+        $name =$_POST['name'];
         $description = $_POST['description'];
-        $selectCat = $_POST['selectCat'];
+        $selectImp = (int)$_POST['selectImp'];
         $dimensions = $_POST['dimensions'];
         $price = $_POST['price'];
 
-        $id = $this->model->addImpression($name, $description, $selectCat,$dimensions,$price);
+        $id = $this->model->addImpression($name, $description, $selectImp, $dimensions, $price);
 
         header("Location: " . BASE_URL);
         
+    }
+
+    function removeImpression($id) {
+        $this->model->removeImpressionbyID($id);
+        header("Location: " . BASE_URL . "home");
     }
 }
