@@ -3,7 +3,7 @@
 <ul>
 {foreach from=$types item=$type}
             
-    <li class='col' >{$type->nombre}<br></a>{$type->descripcion}<br>Precio: {$type->precio}</li>
+    <li class='col' >{$type->nombre}<br></a>{$type->descripcion}<br>Precio: {$type->precio}<br>Dimensiones: {$type->dimensiones}</li>
     <button type="submit" class="btn btn-primary mt-3">Comprar</button>
     <br>
     <a href="{BASE_URL}"> Volver al Inicio </a>

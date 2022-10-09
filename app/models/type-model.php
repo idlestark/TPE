@@ -31,8 +31,8 @@ class TypeModel{
     function getTypesbyId($id){
         $db = $this->connectDB();
         
-        $query = $db->prepare( "SELECT * FROM tipo WHERE id = '$id'");
-        
+        $query = $db->prepare( "SELECT objeto.*, tipo.nombre_tipo as types FROM objeto INNER JOIN tipo ON objeto.tipo_id_fk = tipo.id WHERE tipo_id_fk ='$id'");
+        //"SELECT libros.*, autores.nombre as autor  FROM libros INNER JOIN autores ON libros.id_autores_fk = autores.id_autores WHERE id_autores_fk='$id'" 
         $query->execute();
         
         $types = $query->fetchAll(PDO::FETCH_OBJ);
