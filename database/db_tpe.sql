@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2022 a las 00:57:10
+-- Tiempo de generación: 09-10-2022 a las 21:21:05
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `objeto` (
   `id` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `descripcion` text NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
   `tipo_id_fk` int(11) NOT NULL,
   `dimensiones` varchar(45) NOT NULL,
-  `precio` int(11) NOT NULL
+  `precio` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -41,9 +41,11 @@ CREATE TABLE `objeto` (
 --
 
 INSERT INTO `objeto` (`id`, `nombre`, `descripcion`, `tipo_id_fk`, `dimensiones`, `precio`) VALUES
-(1, 'perro low poly', 'Un perro estilo low poly', 1, '100x90x38', 600),
-(2, 'Lámpara Voronoi', 'Una lámpara con el clásico estilo Voronoi.', 3, '250x100x80', 1800),
-(4, 'Posavasos Minimalista', 'Un posavasos de estilo minimalista.', 14, '90x90', 450);
+(1, 'Perro low-poly', 'Un perro estilo low-poly', 1, '100x90x38', '600$'),
+(2, 'Lámpara Voronoi', 'Una lámpara con el clásico estilo Voronoi.', 3, '250x100x80', '1800$'),
+(4, 'Posavasos Minimalista', 'Un posavasos de estilo minimalista.', 14, '90x90', '450$'),
+(13, 'Aplique moderno', 'Un moderno aplique para pared.', 2, '150x200x180', '5400$'),
+(14, 'Repuesto patas de microondas', 'Un simple repuesto para las patas de un microondas.', 33, '18x38x10', '300$');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,27 @@ INSERT INTO `tipo` (`id`, `nombre_tipo`, `descripcion`) VALUES
 (1, 'Decoración', 'Son impresiones enfocadas a lo ornamental, lo cual es ideal para un regalo, o para poder armar una estética particular en, por ejemplo, una estantería.'),
 (2, 'Apliques', 'Los apliques son lámparas que se fijan a una pared para darle un toque más novedoso a su hogar.'),
 (3, 'Lámparas', 'Las lámparas de noche son una de nuestras especialidades, podrá elegir entre nuestros numerosos modelos.'),
-(14, 'Posavasos', 'Diferentes tipos de posavasos, los cuales son una gran idea si intentamos conseguir una estética particular para nuestro hogar.');
+(14, 'Posavasos', 'Diferentes tipos de posavasos, los cuales son una gran idea si intentamos conseguir una estética particular para nuestro hogar.'),
+(33, 'Repuestos', 'Repuestos para todo tipo de utilidades.');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(280) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `email`, `password`) VALUES
+(1, 'adminI&N@gmail.com', '$2a$12$V7ZnD7af4xotNaxOdotRGe425IIg/LqWd0Xy0Fm5Gxuf16r79Fm9O');
 
 --
 -- Índices para tablas volcadas
@@ -85,6 +107,12 @@ ALTER TABLE `tipo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -92,13 +120,19 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de la tabla `objeto`
 --
 ALTER TABLE `objeto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo`
 --
 ALTER TABLE `tipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
