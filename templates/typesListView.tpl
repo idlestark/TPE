@@ -3,8 +3,14 @@
 <ul>
 {foreach from=$ListTypes item=$ListType}
 <li class='col'> <a href='cats/{$ListType->id}'>{$ListType->nombre_tipo}<br></a></li>
-<a href='removeCategory/{$ListType->id}' type='button' class='btn btn-danger'>Borrar</a>    
+{if isset($smarty.session.USER_ID)}
+    <a href='removeCategory/{$ListType->id}' type='button' class='btn btn-danger'>Borrar</a> 
+    {/if}
 {/foreach}
-</ul> 
 
+
+
+</ul> 
+{if isset($smarty.session.USER_ID)}
 {include 'templates/AddCategories.tpl'}
+{/if}

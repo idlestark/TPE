@@ -1,5 +1,6 @@
 <?php
 include_once './app/controllers/app-controller.php';
+include_once './app/controllers/auth-controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 $action = 'home'; 
@@ -16,6 +17,20 @@ $ImpressionsController = new ImpressionsController();
 $params = explode('/', $action); 
 
 switch ($params[0]) {
+    case 'login':
+        $authController = new AuthController();
+        $authController->showFormLogin();
+        break;
+    case 'validate':
+        $authController = new AuthController();
+        $authController->validateUser();
+        break;
+    
+    case 'logout':
+        $authController = new AuthController();
+        $authController->logout();
+        break;
+            
     case 'addCategory':       
         $CRUDCatsController->addCategory();
         break;

@@ -1,4 +1,5 @@
 <?php
+include_once 'app/helpers/auth-helper.php';
 include_once 'app/models/impressions-model.php';
 include_once 'app/views/app-view.php';
 include_once 'app/models/type-model.php';
@@ -14,6 +15,7 @@ class ImpressionsController{
     }
 
     function showImpressions(){
+    session_start();    
     $impressions = $this->model->getImpressions();
     $typesModel = new TypeModel();
     $types = $typesModel->getTypeList();
@@ -22,6 +24,7 @@ class ImpressionsController{
     }
     
     function showImpressionDetails($id){
+        session_start();
         $ImpressionDetails = $this->model->ImpressionDetails($id);
         $this->view->impressionDetails($ImpressionDetails);
        }
@@ -38,13 +41,13 @@ class TypeController{
     }
 
     function ShowTypes($id){
-    //obtiene los tipos del modelo
+        session_start();
     $types = $this->model->getTypesbyId($id);
-    //actualizo la vista
      $this->view->ShowTypes($types);
     }
 
     function ShowListType(){
+        session_start();
         $ListTypes = $this->model->getTypeList();
         $this->view->ListTypes($ListTypes);
           }
@@ -62,7 +65,7 @@ class AboutController{
     }
 
     function ShowAbout(){
-       
+    session_start();  
      $this->view->ShowAbout(); 
 
     }
@@ -78,6 +81,9 @@ class CRUDCatsController{
     }
 
     function addCategory(){
+        $AuthHelper = new AuthHelper();
+        $AuthHelper->checkLoggedIn();
+        
         $namecats = $_POST['namecats'];
         $descriptioncats = $_POST['descriptioncats'];
 
@@ -86,6 +92,8 @@ class CRUDCatsController{
     }
 
     function removeCategory($id) {
+        $AuthHelper = new AuthHelper();
+        $AuthHelper->checkLoggedIn();
         $this->model->removeCategoryById($id);
         header("Location: " . BASE_URL . "cats");
     }
@@ -101,6 +109,8 @@ class CRUDImpressionsController{
     }
 
     function addImpression(){
+        $AuthHelper = new AuthHelper();
+        $AuthHelper->checkLoggedIn();
         $name =$_POST['name'];
         $description = $_POST['description'];
         $selectImp = (int)$_POST['selectImp'];
@@ -114,6 +124,8 @@ class CRUDImpressionsController{
     }
 
     function removeImpression($id) {
+        $AuthHelper = new AuthHelper();
+        $AuthHelper->checkLoggedIn();
         $this->model->removeImpressionbyID($id);
         header("Location: " . BASE_URL . "home");
     }
