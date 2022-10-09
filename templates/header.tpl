@@ -15,7 +15,11 @@
       <a class="nav-item nav-link" href="home">Home</a>
       <a class="nav-item nav-link" href="about">Sobre Nosotros</a>
       <a class="nav-item nav-link" href="cats">Categorías</a>
-      
+      {if !isset($smarty.session.USER_ID)}
+         <a class="nav-link" aria-current="page" href="login">Iniciar Sesión</a>
+      {else} 
+        <a class="nav-link" aria-current="page" href="logout">Cerrar Sesión ({$smarty.session.USER_EMAIL})</a>
+       {/if}  
     </div>
   </div>
 </nav> 
