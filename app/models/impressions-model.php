@@ -5,30 +5,6 @@ class CRUDImpression{
         $db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
         return $db;
     }
-    function addImpression($name, $description, $selectImp, $dimensions, $price){
-
-        $db = $this->connectDB();
-        $query = $db->prepare("INSERT INTO objeto(nombre, descripcion, tipo_id_fk, dimensiones, precio) VALUES (?,?,?,?,?)");
-        $query->execute([$name, $description, $selectImp, $dimensions, $price]);
-        
-        return $db->lastInsertId();
-    }
-
-    function removeImpressionById($id){
-        $db = $this->connectDB();
-        $query = $db->prepare('DELETE FROM objeto WHERE id = ?');
-        $query->execute([$id]);
-    }
-}
-
-
-class ImpressionsModel{
-
-    function connectDB(){
-        $db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
-        return $db;
-    }
-
     function getImpressions(){
         $db = $this->connectDB();
         
@@ -42,20 +18,52 @@ class ImpressionsModel{
         
         }
     
-        function ImpressionDetails($id){
-            $db = $this->connectDB();
+    function ImpressionDetails($id){
+         $db = $this->connectDB();
     
-            $query = $db->prepare( "SELECT * FROM objeto WHERE id = '$id'");
+        $query = $db->prepare( "SELECT * FROM objeto WHERE id = '$id'");
     
-            $query->execute();
+        $query->execute();
             
-            $ImpressionDetails = $query->fetchAll(PDO::FETCH_OBJ);
+        $ImpressionDetails = $query->fetchAll(PDO::FETCH_OBJ);
     
-            return $ImpressionDetails;
+        return $ImpressionDetails;
     
     
         }    
     
+    function addImpression($name, $description, $selectImp, $dimensions, $price){
+
+
+        $db = $this->connectDB();
+        $query = $db->prepare("INSERT INTO objeto(nombre, descripcion, tipo_id_fk, dimensiones, precio) VALUES (?,?,?,?,?)");
+        $query->execute([$name, $description, $selectImp, $dimensions, $price]);
+        
+        return $db->lastInsertId();
+    }
+
+    function removeImpressionById($id){
+        $db = $this->connectDB();
+        $query = $db->prepare('DELETE FROM objeto WHERE id = ?');
+        $query->execute([$id]);
+    }
+
+    function getImpressionsForm($id){
+        $db = $this->connectDB();
+        $query = $db->prepare("SELECT * FROM objeto WHERE id = ?"); 
+        $query->execute([$id]);
+        $impressions = $query->fetch(PDO::FETCH_OBJ);
+        return $impressions;
+    
+    }
+
+    function updateImpression($name, $description, $inputCat, $dimensions, $price, $id ){
+        $db = $this->connectDB();
+        $consulta = $db->prepare("UPDATE objeto SET nombre=?, descripcion=?, tipo_id_fk=?, dimensiones=?, precio=? WHERE id=?");
+        $consulta->execute([$name,$description, $inputCat, $dimensions, $price, $id]);
+    }
+    
+ 
 }
 
 

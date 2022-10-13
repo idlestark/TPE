@@ -16,7 +16,7 @@
 <br>
 <div class="col-md-4">
 <label for="inputState" class="form-label">Categoría: </label>
-<select id="selectImp" name="selectImp" class="form-select">
+<select id="selectImp " value="vacio" name="selectImp" class="form-select">
   <option selected>Elegir...</option>
   {foreach from=$types item=$type}
     <option value={$type->id}>

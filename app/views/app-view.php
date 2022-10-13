@@ -19,14 +19,14 @@ class ImpressionsView{
         $this->smarty->display('impressionsDetails.tpl');
         
     }
-}
 
-class TypesView{
-    private $smarty;
+    function EditImpressionsForm($impressions, $CatsId){
+        $this->smarty->assign('impressions', $impressions);
+        $this->smarty->assign('CatsId', $CatsId);
+        $this->smarty->display('EditImpressionsForm.tpl');
+    }
 
-    public function __construct() {
-        $this->smarty = new Smarty();
-   }
+
     function showTypes($types){
         $this->smarty->assign('types', $types);
         $this->smarty->display('typesView.tpl');
@@ -37,7 +37,14 @@ class TypesView{
         $this->smarty->display('typesListView.tpl');
          
      }
+    
+    
 
+
+    function EditCatsForm($types){
+        $this->smarty->assign('types', $types);
+        $this->smarty->display('EditCatsForm.tpl');
+    }
 }
 
 

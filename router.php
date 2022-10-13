@@ -11,8 +11,7 @@ if (!empty($_GET['action'])) {
 
 $CRUDCatsController = new CRUDCatsController();
 $CRUDImpressionsController = new CRUDImpressionsController();
-$Typecontroller = new TypeController();
-$ImpressionsController = new ImpressionsController();
+
 
 $params = explode('/', $action); 
 
@@ -44,13 +43,29 @@ switch ($params[0]) {
     case 'removeCategory':
         $id = $params[1];       
         $CRUDCatsController->removeCategory($id);
+        break;
+    case 'showFormEditImpressions':
+        $id = $params[1];       
+        $CRUDImpressionsController->showFormEditImpressions($id);
+       break;
+        case 'editImpression':
+       $id = $params[1];  
+       $CRUDImpressionsController->updateImpression($id);
+        break;        
+    case 'showFormEditCat':
+        $id = $params[1];       
+       $CRUDCatsController->showFormEditCat($id);
+       break;
+    case 'editCategory':
+        $id = $params[1];  
+        $CRUDCatsController->updateCategory($id);
         break;    
     case 'impresiones':
         $id =$params[1];
-        $ImpressionsController->showImpressionDetails($id);
+        $CRUDImpressionsController->showImpressionDetails($id);
         break;
     case 'home':
-        $ImpressionsController->showImpressions();
+        $CRUDImpressionsController->showImpressions();
         break;
     case 'about':
         $controller = new AboutController();
@@ -59,11 +74,11 @@ switch ($params[0]) {
     case 'cats':
         if (empty($params[1])) {
             
-            $Typecontroller->ShowListType();
+            $CRUDCatsController->ShowListType();
         } 
         else{
             $id = $params[1];
-            $Typecontroller->ShowTypes($id);
+            $CRUDCatsController->ShowTypes($id);
             break;  
         }
           

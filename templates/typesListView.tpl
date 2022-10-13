@@ -5,6 +5,7 @@
 <li class='col'> <a href='cats/{$ListType->id}'>{$ListType->nombre_tipo}<br></a></li>
 {if isset($smarty.session.USER_ID)}
     <a href='removeCategory/{$ListType->id}' type='button' class='btn btn-danger'>Borrar</a> 
+    <a href='showFormEditCat/{$ListType->id}' type='button' class='btn btn-secondary'>Editar</a>
     {/if}
 {/foreach}
 
