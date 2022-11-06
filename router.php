@@ -1,5 +1,6 @@
 <?php
-include_once './app/controllers/app-controller.php';
+include_once './app/controllers/impressions-controller.php';
+include_once './app/controllers/cats-controller.php';
 include_once './app/controllers/auth-controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
